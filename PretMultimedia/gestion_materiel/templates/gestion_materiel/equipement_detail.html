@@ -1,0 +1,15 @@
+{% extends 'gestion_materiel/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>{{ equipement.nom }}</h2>
+    <hr>
+    <p>Type: {{ equipement.type }}</p>
+    <p>Date d'achat: {{ equipement.date_achat }}</p>
+    <p>Coût: {{ equipement.cout }}</p>
+    <p>Propriétaire: {{ equipement.proprietaire }}</p>
+    <p>Salle actuelle: {{ equipement.salle_actuelle }}</p>
+    <a href="{% url 'equipement-update' pk=equipement.pk %}">Éditer</a>
+    <hr>
+    <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'gestion_materiel/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Liste des équipements</h2>
+    <hr>
+    <ul>
+        {% for equipement in equipements %}
+        <li><a href="{% url 'equipement-detail' pk=equipement.pk %}">{{ equipement.nom }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'equipement-create' %}">Ajouter un nouvel équipement</a>
+    <hr>
+    <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
+{% endblock %}

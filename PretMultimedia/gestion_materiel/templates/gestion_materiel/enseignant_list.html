@@ -1,0 +1,14 @@
+{% extends 'gestion_materiel/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Liste des Professeurs</h2>
+    <hr>
+    <ul>
+        {% for enseignant in enseignants %}
+        <li>{{ enseignant.prenom }} {{ enseignant.nom }} - {{ enseignant.email }}</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
+{% endblock %}
