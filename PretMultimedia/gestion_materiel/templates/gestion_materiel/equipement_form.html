@@ -1,8 +1,26 @@
 {% extends 'gestion_materiel/base.html' %}
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sauvegarder</button>
-</form>
+<div class="container">
+    <h2>Créer un équipement</h2>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    </form>
+    <hr>
+    <a href="{% url 'equipement-list' %}" class="btn btn-warning">Annuler la création</a>
+</div>
+<datalist id="budgets">
+    <option value="Budget courant">
+    <option value="Budget Exeptionel">
+    <option value="Budget Projet">
+</datalist>
+<datalist id="types">
+    <option value="Smartphone">
+    <option value="Pointeur laser">
+    <option value="Vidéo-projecteur">
+    <option value="Ecran">
+    <option value="Tablette">
+</datalist>
 {% endblock %}

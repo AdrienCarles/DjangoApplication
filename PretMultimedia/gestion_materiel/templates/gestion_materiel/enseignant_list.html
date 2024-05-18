@@ -8,6 +8,7 @@
         <li>{{ enseignant.prenom }} {{ enseignant.nom }} - {{ enseignant.email }}</li>
         {% endfor %}
     </ul>
+    <a href="{% url 'enseignant-create' %}" class="btn btn-secondary">Ajouter un nouvel enseignant</a>
     <hr>
     <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
 </div>

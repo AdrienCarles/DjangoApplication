@@ -1,0 +1,14 @@
+{% extends 'gestion_materiel/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Créer un enseignant</h2>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    </form>
+    <hr>
+    <a href="{% url 'enseignant-list' %}" class="btn btn-warning">Annuler la création</a>
+</div>
+{% endblock %}

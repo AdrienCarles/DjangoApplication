@@ -8,7 +8,7 @@
         <li><a href="{% url 'equipement-detail' pk=equipement.pk %}">{{ equipement.nom }}</a></li>
         {% endfor %}
     </ul>
-    <a href="{% url 'equipement-create' %}">Ajouter un nouvel équipement</a>
+    <a href="{% url 'equipement-create' %}" class="btn btn-secondary">Ajouter un nouvel équipement</a>
     <hr>
     <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
 </div>

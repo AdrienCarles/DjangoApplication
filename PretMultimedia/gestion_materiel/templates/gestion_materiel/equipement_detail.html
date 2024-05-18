@@ -6,6 +6,7 @@
     <p>Type: {{ equipement.type }}</p>
     <p>Date d'achat: {{ equipement.date_achat }}</p>
     <p>Coût: {{ equipement.cout }}</p>
+    <p>Acheteur: {{ equipement.acheteur }}</p>
     <p>Propriétaire: {{ equipement.proprietaire }}</p>
     <p>Salle actuelle: {{ equipement.salle_actuelle }}</p>
     <a href="{% url 'equipement-update' pk=equipement.pk %}">Éditer</a>

@@ -23,6 +23,7 @@ class Equipement(models.Model):
     type_budget = models.CharField(max_length=100)  # Type de budget utilisé pour l'achat
     accessoires = models.CharField(max_length=200)  # Liste des accessoires
     etat_accessoires = models.CharField(max_length=200)  # État des accessoires
+    acheteur = models.CharField(max_length=100, choices=[('lycee', 'Lycée'), ('mandant', 'Mandant')], default='lycee')
     proprietaire = models.ForeignKey(Enseignant, related_name='equipements_possedes', on_delete=models.SET_NULL, null=True)
     salle_actuelle = models.ForeignKey(Salle, related_name='equipements_stockes', on_delete=models.SET_NULL, null=True)
     detenteur_actuel = models.ForeignKey(Enseignant, related_name='equipements_detenus', on_delete=models.SET_NULL, null=True)
@@ -35,7 +36,6 @@ class Pret(models.Model):
     emprunteur = models.ForeignKey(Enseignant, related_name='prets', on_delete=models.CASCADE)
     date_pret = models.DateField()
     date_retour = models.DateField(null=True, blank=True)
-    lieu_pret = models.CharField(max_length=100)  # Lieu du prêt
     objectif_utilisation = models.CharField(max_length=200)  # Objectif de l'utilisation
 
     def __str__(self):
