@@ -5,7 +5,7 @@
     <hr>
     <ul>
         {% for enseignant in enseignants %}
-        <li>{{ enseignant.prenom }} {{ enseignant.nom }} - {{ enseignant.email }}</li>
+        <li><a href="{% url 'enseignant-detail' pk=enseignant.pk %}">{{ enseignant.prenom }} {{ enseignant.nom }} - {{ enseignant.email }}</a></li>
         {% endfor %}
     </ul>
     <a href="{% url 'enseignant-create' %}" class="btn btn-secondary">Ajouter un nouvel enseignant</a>

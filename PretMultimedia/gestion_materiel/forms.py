@@ -1,5 +1,5 @@
 from django import forms
-from .models import Equipement, Enseignant, Salle
+from .models import Equipement, Enseignant, Salle, Pret
 
 class EquipementCreateForm(forms.ModelForm):
     proprietaire = forms.ModelChoiceField(queryset=Enseignant.objects.all(), required=False)
@@ -28,6 +28,14 @@ class EquipementCreateForm(forms.ModelForm):
         } 
 
 class EquipementUpdateForm(forms.ModelForm):
+    proprietaire = forms.ModelChoiceField(queryset=Enseignant.objects.all(), required=False)
+    detenteur_actuel = forms.ModelChoiceField(queryset=Enseignant.objects.all(), required=False)
+
+    etat_accessoires = forms.ChoiceField(choices=[('Neuf', 'Neuf'), ('Bon Etat', 'Bon Etat'), ('Usée', 'Usée'), ('Manquant', 'Manquant')])
+
+    type_budget = forms.CharField(widget=forms.TextInput(attrs={'list':'budgets'}))
+    type = forms.CharField(widget=forms.TextInput(attrs={'list':'types'}))
+
     class Meta:
         model = Equipement
         fields = ['nom', 'type', 'date_achat', 'cout', 'type_budget', 'accessoires', 'etat_accessoires', 'acheteur', 'proprietaire', 'salle_actuelle', 'detenteur_actuel']
@@ -44,3 +52,12 @@ class EquipementUpdateForm(forms.ModelForm):
             'salle_actuelle': forms.Select(attrs={'class': 'my-custom-class'}),
             'detenteur_actuel': forms.Select(attrs={'class': 'my-custom-class'}),
         } 
+
+class PretCreateForm(forms.ModelForm):
+    class Meta:
+        model = Pret
+        fields = ['equipement', 'emprunteur', 'date_pret', 'date_retour', 'lieu', 'objectif_utilisation']
+        widgets = {
+            'date_pret': forms.DateInput(attrs={'type': 'date'}),
+            'date_retour': forms.DateInput(attrs={'type': 'date'}),
+        }

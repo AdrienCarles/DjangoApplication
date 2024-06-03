@@ -1,13 +1,8 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from .models import Equipement, Enseignant
-from .forms import EquipementCreateForm
+from .models import Equipement, Enseignant, Pret
+from .forms import EquipementCreateForm, EquipementUpdateForm, PretCreateForm
 from django.urls import reverse_lazy
-
-class EquipementListView(ListView):
-    model = Equipement
-    context_object_name = 'equipements'
-    template_name = 'gestion_materiel/equipement_list.html'
 
 class EnseignantListView(ListView):
     model = Enseignant
@@ -20,10 +15,15 @@ class EnseignantCreateView(CreateView):
     template_name = 'gestion_materiel/enseignant_form.html'
     success_url = reverse_lazy('enseignant-list')
 
-class EquipementDetailView(DetailView):
+class EnseignantDetailView(DetailView):
+    model = Enseignant
+    context_object_name = 'enseignant'
+    template_name = 'gestion_materiel/enseignant_detail.html'
+
+class EquipementListView(ListView):
     model = Equipement
-    context_object_name = 'equipement'
-    template_name = 'gestion_materiel/equipement_detail.html'
+    context_object_name = 'equipements'
+    template_name = 'gestion_materiel/equipement_list.html'
 
 class EquipementCreateView(CreateView):
     model = Equipement
@@ -31,11 +31,27 @@ class EquipementCreateView(CreateView):
     template_name = 'gestion_materiel/equipement_form.html'
     success_url = reverse_lazy('equipement-list')
 
+class EquipementDetailView(DetailView):
+    model = Equipement
+    context_object_name = 'equipement'
+    template_name = 'gestion_materiel/equipement_detail.html'
+
 class EquipementUpdateView(UpdateView):
     model = Equipement
-    fields = ['nom', 'type', 'date_achat', 'cout', 'type_budget', 'accessoires', 'etat_accessoires', 'acheteur', 'proprietaire', 'salle_actuelle', 'detenteur_actuel']
+    form_class = EquipementUpdateForm
     template_name = 'gestion_materiel/equipement_form.html'
     success_url = reverse_lazy('equipement-list')
+
+class PretListView(ListView):
+    model = Pret
+    context_object_name = 'prets'
+    template_name = 'gestion_materiel/pret_list.html'
+
+class PretCreateView(CreateView):
+    model = Pret
+    form_class = PretCreateForm
+    template_name = 'gestion_materiel/pret_form.html'
+    success_url = reverse_lazy('pret-list')
 
 def home(request):
     return render(request, 'gestion_materiel/home.html')

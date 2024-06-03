@@ -1,0 +1,14 @@
+{% extends 'gestion_materiel/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Enregistrer une Passation de Matériel</h2>
+    <hr>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </form>
+    <hr>
+    <a href="{% url 'pret-list' %}" class="btn btn-warning">Annuler</a>
+</div>
+{% endblock %}

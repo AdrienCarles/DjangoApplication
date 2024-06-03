@@ -36,7 +36,8 @@ class Pret(models.Model):
     emprunteur = models.ForeignKey(Enseignant, related_name='prets', on_delete=models.CASCADE)
     date_pret = models.DateField()
     date_retour = models.DateField(null=True, blank=True)
-    objectif_utilisation = models.CharField(max_length=200)  # Objectif de l'utilisation
+    lieu = models.ForeignKey(Salle, on_delete=models.SET_NULL, null=True)
+    objectif_utilisation = models.CharField(max_length=200)
 
     def __str__(self):
         return f"{self.equipement.nom} prêté à {self.emprunteur}"

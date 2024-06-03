@@ -1,0 +1,19 @@
+{% extends 'gestion_materiel/base.html' %}
+{% block content %}
+<div class="container">
+    <h2>Liste des Passations de Matériel</h2>
+    <hr>
+    <ul>
+        {% for pret in prets %}
+        <li>
+            {{ pret.equipement.nom }} prêté à {{ pret.emprunteur }} le {{ pret.date_pret }} 
+            {% if pret.date_retour %} jusqu'au {{ pret.date_retour }} {% endif %} 
+            - Lieu : {{ pret.lieu }} - Objectif : {{ pret.objectif_utilisation }}
+        </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'pret-create' %}" class="btn btn-secondary">Ajouter une nouvelle passation</a>
+    <hr>
+    <a href="{% url 'home' %}" class="btn btn-primary">Retour à l'accueil</a>
+</div>
+{% endblock %}
